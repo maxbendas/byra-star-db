@@ -1,3 +1,3 @@
-import ItemList from './item-list1'
+import ItemList from './item-list'
 
 export default ItemList;
