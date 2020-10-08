@@ -14,7 +14,7 @@ export default class SwapiService {
 
     getAllPeople = async () => {
         const res = await this.getResource(`/people/`);
-        return res.results.map(this._transformPerson);
+        return res.results.map(this._transformPerson).slice(0, 5);
     }
 
     getPerson = async (id) => {
@@ -22,13 +22,13 @@ export default class SwapiService {
         return this._transformPerson(person);
     }
 
-    getPersonImage = ({id})=>{
+    getPersonImage = ({id}) => {
         return `${this._imageBase}/characters/${id}.jpg`
     }
 
     getAllPlanets = async () => {
         const res = await this.getResource(`/planets/`);
-        return res.results.map(this._transformPlanet);
+        return res.results.map(this._transformPlanet).slice(0, 5);
     }
 
     getPlanet = async (id) => {
@@ -36,13 +36,13 @@ export default class SwapiService {
         return this._transformPlanet(planet);
     }
 
-    getPlanetImage = ({id})=>{
+    getPlanetImage = ({id}) => {
         return `${this._imageBase}/planets/${id}.jpg`
     }
 
     getAllStarships = async () => {
         const res = await this.getResource(`/starships/`);
-        return res.results.map(this._transformStarship);
+        return res.results.map(this._transformStarship).slice(0, 5);
     }
 
     getStarship = async (id) => {
@@ -50,7 +50,7 @@ export default class SwapiService {
         return this._transformStarship(starship);
     }
 
-    getStarshipImage = ({id})=>{
+    getStarshipImage = ({id}) => {
         return `${this._imageBase}/starships/${id}.jpg`
     }
 
