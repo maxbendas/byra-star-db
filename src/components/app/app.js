@@ -7,22 +7,31 @@ import ItemDetails from '../item-details';
 import './app.css';
 import ErrorIndicator from "../error-indicator";
 import SwapiService from "../../services/swapi-service";
-import DummySwapiService from "../../services/dummy-swapi-service";
 import {SwapiServiceProvider} from "../swapi-service-context";
 import {Record} from "../item-details/item-details";
 
 import {PersonList, StarshipList, PlanetList, PlanetDetails, PersonDetails, StarshipDetails} from "../sw-components";
 import ErrorBoundary from "../error-boundary/error-boundary";
+import DummySwapiService from "../../services/dummy-swapi-service";
 
 
 class App extends Component {
 
-    swapiService = new SwapiService();
-
     state = {
         showRandomPlanet: true,
         selectedPerson: 5,
-        hasError: false
+        hasError: false,
+        swapiService: new DummySwapiService()
+    }
+
+    onServiceChange = ()=>{
+        this.setState(({swapiService})=>{
+            const Service = swapiService instanceof SwapiService ?
+                DummySwapiService : SwapiService;
+            return{
+                swapiService: new Service()
+            }
+        })
     }
 
     toggleRandomPlanet = () => {
@@ -51,7 +60,7 @@ class App extends Component {
             getStarshipImage,
             getAllPeople,
             getAllPlanets
-        } = this.swapiService;
+        } = this.state.swapiService;
 
 
         const personDetails = (
@@ -76,9 +85,9 @@ class App extends Component {
 
         return (
             <ErrorBoundary>
-                <SwapiServiceProvider value={this.swapiService}>
+                <SwapiServiceProvider value={this.state.swapiService}>
                 <div className="stardb-app">
-                    <Header/>
+                    <Header onServiceChange={this.onServiceChange}/>
                     <PersonDetails itemId={10}/>
                     <PlanetDetails itemId={10}/>
                     <StarshipDetails itemId={10}/>
