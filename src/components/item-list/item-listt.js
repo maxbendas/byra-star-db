@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './item-list.css';
 
 const ItemList = (props) => {
@@ -7,9 +8,6 @@ const ItemList = (props) => {
     const items = data.map((item, idx) => {
         const {id} = item;
         const label = renderLabel(item);
-        // if (idx>4){
-        //     return
-        // }
         return (
             <li className="list-group-item"
                 key={id}
@@ -24,6 +22,16 @@ const ItemList = (props) => {
             {items}
         </ul>
     );
+}
+
+ItemList.defaultProps = {
+    onItemSelected: ()=>{}
+}
+
+ItemList.propTypes = {
+    onItemSelected: PropTypes.func,
+    data:PropTypes.arrayOf(PropTypes.object).isRequired,
+    children: PropTypes.func.isRequired
 }
 
 export default ItemList;
