@@ -6,7 +6,6 @@ class ErrorButton extends React.Component {
         renderError:false
     }
     render() {
-        console.log('render')
         if (this.state.renderError){
             this.foo.bar = 0
         }
