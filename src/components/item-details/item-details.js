@@ -16,12 +16,16 @@ export {
     Record
 }
 
+
+
 export default class ItemDetails extends Component {
 
     state = {
         item: null,
         image: null
     };
+
+
 
     componentDidMount() {
         this.updateItem()

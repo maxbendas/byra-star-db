@@ -5,15 +5,15 @@ import {withSwapiService} from "../hoc-helpers";
 
 const PersonDetails = (props) => {
     return (
-                        <ItemDetails {...props}>
-                            <Record field="gender" label="Gender"/>
-                            <Record field="birthYear" label="Birth Year"/>
-                            <Record field="eyeColor" label="Eye Color"/>
-                        </ItemDetails>
+        <ItemDetails {...props}>
+            <Record field="gender" label="Gender"/>
+            <Record field="birthYear" label="Birth Year"/>
+            <Record field="eyeColor" label="Eye Color"/>
+        </ItemDetails>
     )
 };
 
-const mapMethodsToProps = (swapiService) =>{
+const mapMethodsToProps = (swapiService) => {
     return {
         getData: swapiService.getPerson,
         getImageUrl: swapiService.getPersonImage
